@@ -46,7 +46,7 @@ class _EventDataViewState extends State<EventDetailView> {
       if (pickedTime != null) {
         setState(() {
           final newDateTime = DateTime(pickedDate.year, pickedDate.month,
-              pickedDate.day, pickedDate.hour, pickedDate.minute);
+              pickedDate.day, pickedTime.hour, pickedTime.minute);
           if (isStart) {
             widget.event.startTime = newDateTime;
             if (widget.event.startTime.isAfter(widget.event.endTime)) {
@@ -54,6 +54,8 @@ class _EventDataViewState extends State<EventDetailView> {
               widget.event.endTime =
                   widget.event.startTime.add(const Duration(hours: 1));
             }
+          } else {
+            widget.event.endTime = newDateTime;
           }
         });
       }
